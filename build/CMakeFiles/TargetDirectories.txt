@@ -1,0 +1,3 @@
+/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles/CameraCalibration.dir
+/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles/edit_cache.dir
+/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,4 @@
+# Immagini di calibrazione
+data/calib_images/*.jpg
+data/calib_images/*.png
+data/calib_images/*.bmp
