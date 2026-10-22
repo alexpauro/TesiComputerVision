@@ -45,6 +45,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/alexpauro/Tesi/Computer Vision/build/lib/calibration/cmake_install.cmake")
+  include("/home/alexpauro/Tesi/Computer Vision/build/lib/alignment/cmake_install.cmake")
   include("/home/alexpauro/Tesi/Computer Vision/build/app/cmake_install.cmake")
 
 endif()

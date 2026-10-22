@@ -5,6 +5,7 @@
 #include <vector>
 #include <cstdio>  
 #include <cstdlib>
+#include <filesystem>
 
 // Funzione automatica per convertire i file DNG in TIFF a 16-bit lineari
 void convertDngToTiff(const std::string& folderPath) {
@@ -37,8 +38,18 @@ void convertDngToTiff(const std::string& folderPath) {
 // Funzione per calibrare un singolo set di telecamere (con soglia RMS dinamica)
 void calibrateCameraSet(const std::string& folderPath, const std::string& extension, 
                         int squaresX, int squaresY, float squareLength, float markerLength, 
-                        const std::string& outputFilename, double targetRms) {
+                        const std::string& outputFilename, double targetRms, bool forceCalibration) {
     
+    // Controllo esistenza file di calibrazione
+    if (!forceCalibration && std::filesystem::exists(outputFilename)) {
+        std::cout << "\n======================================================\n";
+        std::cout << "CALIBRAZIONE GIA' EFFETTUATA PER: " << folderPath << "\n";
+        std::cout << "Parametri trovati in: " << outputFilename << "\n";
+        std::cout << "Salto la fase di calibrazione.\n";
+        std::cout << "======================================================\n";
+        return;
+    }
+
     std::cout << "\n======================================================\n";
     std::cout << "INIZIO CALIBRAZIONE SET: " << folderPath << "\n";
     std::cout << "Target RMS impostato a: " << targetRms << "\n";

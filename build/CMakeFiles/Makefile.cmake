@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
+  "../lib/alignment/CMakeLists.txt"
   "../lib/calibration/CMakeLists.txt"
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig.cmake"
@@ -48,11 +49,13 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "lib/calibration/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "lib/alignment/CMakeFiles/CMakeDirectoryInformation.cmake"
   "app/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "lib/calibration/CMakeFiles/calibration.dir/DependInfo.cmake"
+  "lib/alignment/CMakeFiles/alignment.dir/DependInfo.cmake"
   "app/CMakeFiles/CameraCalibration.dir/DependInfo.cmake"
   )

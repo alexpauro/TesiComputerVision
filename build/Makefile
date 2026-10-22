@@ -130,6 +130,19 @@ calibration/fast:
 .PHONY : calibration/fast
 
 #=============================================================================
+# Target rules for targets named alignment
+
+# Build rule for target.
+alignment: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alignment
+.PHONY : alignment
+
+# fast build rule for target.
+alignment/fast:
+	$(MAKE) $(MAKESILENT) -f lib/alignment/CMakeFiles/alignment.dir/build.make lib/alignment/CMakeFiles/alignment.dir/build
+.PHONY : alignment/fast
+
+#=============================================================================
 # Target rules for targets named CameraCalibration
 
 # Build rule for target.
@@ -151,6 +164,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... CameraCalibration"
+	@echo "... alignment"
 	@echo "... calibration"
 .PHONY : help
 

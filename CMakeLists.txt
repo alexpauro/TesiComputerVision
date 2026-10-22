@@ -8,4 +8,5 @@ find_package(OpenCV REQUIRED)
 
 # Richiama i moduli interni
 add_subdirectory(lib/calibration)
+add_subdirectory(lib/alignment)
 add_subdirectory(app)

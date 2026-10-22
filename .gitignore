@@ -5,3 +5,14 @@ data/outputs/*.jpg
 
 # Cartella di build
 build/
+
+# Blocca tutti i formati immagine
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.dng
+*.tiff
+*.raw
+
+yolo_env/

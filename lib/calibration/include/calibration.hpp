@@ -9,6 +9,6 @@ void convertDngToTiff(const std::string& folderPath);
 // Funzione per calibrare un singolo set di telecamere
 void calibrateCameraSet(const std::string& folderPath, const std::string& extension, 
                         int squaresX, int squaresY, float squareLength, float markerLength, 
-                        const std::string& outputFilename, double targetRms);
+                        const std::string& outputFilename, double targetRms, bool forceCalibration = false);
 
 #endif // CALIBRATION_HPP

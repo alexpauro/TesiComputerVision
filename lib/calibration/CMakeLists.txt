@@ -1,4 +1,4 @@
-add_library(calibration src/calibration.cpp)
+add_library(calibration src/calibration.cpp src/undistort.cpp)
 
 # Esporta la cartella include e collega OpenCV
 target_include_directories(calibration PUBLIC include ${OpenCV_INCLUDE_DIRS})

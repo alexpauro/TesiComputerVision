@@ -64,16 +64,19 @@ CMAKE_BINARY_DIR = "/home/alexpauro/Tesi/Computer Vision/build"
 
 # The main recursive "all" target.
 all: lib/calibration/all
+all: lib/alignment/all
 all: app/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: lib/calibration/preinstall
+preinstall: lib/alignment/preinstall
 preinstall: app/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: lib/calibration/clean
+clean: lib/alignment/clean
 clean: app/clean
 .PHONY : clean
 
@@ -91,6 +94,21 @@ app/preinstall:
 # Recursive "clean" directory target.
 app/clean: app/CMakeFiles/CameraCalibration.dir/clean
 .PHONY : app/clean
+
+#=============================================================================
+# Directory level rules for directory lib/alignment
+
+# Recursive "all" directory target.
+lib/alignment/all: lib/alignment/CMakeFiles/alignment.dir/all
+.PHONY : lib/alignment/all
+
+# Recursive "preinstall" directory target.
+lib/alignment/preinstall:
+.PHONY : lib/alignment/preinstall
+
+# Recursive "clean" directory target.
+lib/alignment/clean: lib/alignment/CMakeFiles/alignment.dir/clean
+.PHONY : lib/alignment/clean
 
 #=============================================================================
 # Directory level rules for directory lib/calibration
@@ -114,12 +132,12 @@ lib/calibration/clean: lib/calibration/CMakeFiles/calibration.dir/clean
 lib/calibration/CMakeFiles/calibration.dir/all:
 	$(MAKE) $(MAKESILENT) -f lib/calibration/CMakeFiles/calibration.dir/build.make lib/calibration/CMakeFiles/calibration.dir/depend
 	$(MAKE) $(MAKESILENT) -f lib/calibration/CMakeFiles/calibration.dir/build.make lib/calibration/CMakeFiles/calibration.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" --progress-num=3,4 "Built target calibration"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" --progress-num=5,6,7 "Built target calibration"
 .PHONY : lib/calibration/CMakeFiles/calibration.dir/all
 
 # Build rule for subdir invocation for target.
 lib/calibration/CMakeFiles/calibration.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/calibration/CMakeFiles/calibration.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 0
 .PHONY : lib/calibration/CMakeFiles/calibration.dir/rule
@@ -134,10 +152,37 @@ lib/calibration/CMakeFiles/calibration.dir/clean:
 .PHONY : lib/calibration/CMakeFiles/calibration.dir/clean
 
 #=============================================================================
+# Target rules for target lib/alignment/CMakeFiles/alignment.dir
+
+# All Build rule for target.
+lib/alignment/CMakeFiles/alignment.dir/all:
+	$(MAKE) $(MAKESILENT) -f lib/alignment/CMakeFiles/alignment.dir/build.make lib/alignment/CMakeFiles/alignment.dir/depend
+	$(MAKE) $(MAKESILENT) -f lib/alignment/CMakeFiles/alignment.dir/build.make lib/alignment/CMakeFiles/alignment.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" --progress-num=3,4 "Built target alignment"
+.PHONY : lib/alignment/CMakeFiles/alignment.dir/all
+
+# Build rule for subdir invocation for target.
+lib/alignment/CMakeFiles/alignment.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/alignment/CMakeFiles/alignment.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 0
+.PHONY : lib/alignment/CMakeFiles/alignment.dir/rule
+
+# Convenience name for target.
+alignment: lib/alignment/CMakeFiles/alignment.dir/rule
+.PHONY : alignment
+
+# clean rule for target.
+lib/alignment/CMakeFiles/alignment.dir/clean:
+	$(MAKE) $(MAKESILENT) -f lib/alignment/CMakeFiles/alignment.dir/build.make lib/alignment/CMakeFiles/alignment.dir/clean
+.PHONY : lib/alignment/CMakeFiles/alignment.dir/clean
+
+#=============================================================================
 # Target rules for target app/CMakeFiles/CameraCalibration.dir
 
 # All Build rule for target.
 app/CMakeFiles/CameraCalibration.dir/all: lib/calibration/CMakeFiles/calibration.dir/all
+app/CMakeFiles/CameraCalibration.dir/all: lib/alignment/CMakeFiles/alignment.dir/all
 	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/CameraCalibration.dir/build.make app/CMakeFiles/CameraCalibration.dir/depend
 	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/CameraCalibration.dir/build.make app/CMakeFiles/CameraCalibration.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" --progress-num=1,2 "Built target CameraCalibration"
@@ -145,7 +190,7 @@ app/CMakeFiles/CameraCalibration.dir/all: lib/calibration/CMakeFiles/calibration
 
 # Build rule for subdir invocation for target.
 app/CMakeFiles/CameraCalibration.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 4
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 app/CMakeFiles/CameraCalibration.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/alexpauro/Tesi/Computer Vision/build/CMakeFiles" 0
 .PHONY : app/CMakeFiles/CameraCalibration.dir/rule
