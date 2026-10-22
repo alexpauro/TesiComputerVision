@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 find_package(OpenCV REQUIRED)
 
-include_directories(${OpenCV_INCLUDE_DIRS} include)
-
-add_executable(CameraCalibration src/calibrate.cpp)
-target_link_libraries(CameraCalibration ${OpenCV_LIBS})
+# Richiama i moduli interni
+add_subdirectory(lib/calibration)
+add_subdirectory(app)

@@ -8,9 +8,11 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
+  "../app/CMakeLists.txt"
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
+  "../lib/calibration/CMakeLists.txt"
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig-version.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVConfig.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/opencv4/OpenCVModules-release.cmake"
@@ -45,9 +47,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "lib/calibration/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "app/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/CameraCalibration.dir/DependInfo.cmake"
+  "lib/calibration/CMakeFiles/calibration.dir/DependInfo.cmake"
+  "app/CMakeFiles/CameraCalibration.dir/DependInfo.cmake"
   )

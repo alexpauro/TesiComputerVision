@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named calibration
+
+# Build rule for target.
+calibration: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 calibration
+.PHONY : calibration
+
+# fast build rule for target.
+calibration/fast:
+	$(MAKE) $(MAKESILENT) -f lib/calibration/CMakeFiles/calibration.dir/build.make lib/calibration/CMakeFiles/calibration.dir/build
+.PHONY : calibration/fast
+
+#=============================================================================
 # Target rules for targets named CameraCalibration
 
 # Build rule for target.
@@ -126,32 +139,8 @@ CameraCalibration: cmake_check_build_system
 
 # fast build rule for target.
 CameraCalibration/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CameraCalibration.dir/build.make CMakeFiles/CameraCalibration.dir/build
+	$(MAKE) $(MAKESILENT) -f app/CMakeFiles/CameraCalibration.dir/build.make app/CMakeFiles/CameraCalibration.dir/build
 .PHONY : CameraCalibration/fast
-
-src/calibrate.o: src/calibrate.cpp.o
-.PHONY : src/calibrate.o
-
-# target to build an object file
-src/calibrate.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CameraCalibration.dir/build.make CMakeFiles/CameraCalibration.dir/src/calibrate.cpp.o
-.PHONY : src/calibrate.cpp.o
-
-src/calibrate.i: src/calibrate.cpp.i
-.PHONY : src/calibrate.i
-
-# target to preprocess a source file
-src/calibrate.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CameraCalibration.dir/build.make CMakeFiles/CameraCalibration.dir/src/calibrate.cpp.i
-.PHONY : src/calibrate.cpp.i
-
-src/calibrate.s: src/calibrate.cpp.s
-.PHONY : src/calibrate.s
-
-# target to generate assembly for a file
-src/calibrate.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CameraCalibration.dir/build.make CMakeFiles/CameraCalibration.dir/src/calibrate.cpp.s
-.PHONY : src/calibrate.cpp.s
 
 # Help Target
 help:
@@ -162,9 +151,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... CameraCalibration"
-	@echo "... src/calibrate.o"
-	@echo "... src/calibrate.i"
-	@echo "... src/calibrate.s"
+	@echo "... calibration"
 .PHONY : help
 
 

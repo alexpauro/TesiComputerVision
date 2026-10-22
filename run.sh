@@ -12,7 +12,7 @@ make -j$(nproc)
 # Se la compilazione ha successo, esegue il programma
 if [ $? -eq 0 ]; then
     echo -e "\n=== ESECUZIONE ==="
-    ./CameraCalibration
+    ./app/CameraCalibration
 else
     echo -e "\n=== ERRORE DI COMPILAZIONE ==="
 fi

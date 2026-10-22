@@ -1,3 +1,7 @@
 {
-    "cmake.sourceDirectory": "/wsl.localhost/Ubuntu/home/alexpauro/Tesi/Computer Vision/src"
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "/usr/include/opencv4"
+    ]
 }

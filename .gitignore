@@ -2,3 +2,6 @@
 data/calib_images_s24fe
 data/calib_images_robot
 data/outputs/*.jpg
+
+# Cartella di build
+build/
