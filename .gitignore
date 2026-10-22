@@ -1,4 +1,4 @@
 # Immagini di calibrazione
-data/calib_images/*.jpg
-data/calib_images/*.png
-data/calib_images/*.bmp
+data/calib_images_s24fe
+data/calib_images_robot
+data/outputs/*.jpg
