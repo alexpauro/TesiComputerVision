@@ -6,7 +6,9 @@ data/outputs/*.jpg
 # Cartella di build
 build/
 training_workspace/wheels
-runs/
+training_workspace/runs
+training_workspace/import_ls
+yolo_env/
 
 # Blocca tutti i formati immagine
 *.jpg
