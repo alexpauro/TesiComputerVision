@@ -1,0 +1,6 @@
+path: ./data/fiducial_dataset
+train: images/train
+val: images/train  # Per il primo bootstrap usiamo la stessa cartella
+
+names:
+  0: fiducial

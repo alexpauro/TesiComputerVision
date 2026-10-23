@@ -1,0 +1,141 @@
+.
+├── CMakeLists.txt
+├── app
+│   ├── CMakeLists.txt
+│   └── src
+│       └── main.cpp
+├── convert_raw.sh
+├── data
+│   ├── best.onnx
+│   ├── calib_images_robot
+│   ├── calib_images_s24fe
+│   ├── nuove_foto
+│   ├── outputs
+│   │   ├── AA900789820001
+│   │   │   ├── undistorted_robot
+│   │   │   └── undistorted_s24fe
+│   │   ├── camera_params_robot.yml
+│   │   └── camera_params_s24fe.yml
+│   └── pcb_images
+│       └── AA900789820001
+│           ├── robot
+│           └── s24fe
+├── lib
+│   ├── alignment
+│   │   ├── CMakeLists.txt
+│   │   ├── include
+│   │   │   └── alignment.hpp
+│   │   └── src
+│   │       └── alignment.cpp
+│   └── calibration
+│       ├── CMakeLists.txt
+│       ├── include
+│       │   ├── calibration.hpp
+│       │   └── undistort.hpp
+│       └── src
+│           ├── calibration.cpp
+│           └── undistort.cpp
+├── run.sh
+├── struttura.txt
+├── training_workspace
+│   ├── 1_export_to_usb.sh
+│   ├── 2_import_from_usb.sh
+│   ├── autolabel.py
+│   ├── cors_server.py
+│   ├── data
+│   │   └── fiducial_dataset
+│   │       ├── dataset.yaml
+│   │       ├── images
+│   │       │   ├── train
+│   │       │   └── val
+│   │       └── labels
+│   │           ├── train
+│   │           │   ├── 013baccc-AA900789820001_robot_011.txt
+│   │           │   ├── 0290f892-AA900789820001_robot_017.txt
+│   │           │   ├── 06f1984c-AA900789820001_robot_006.txt
+│   │           │   ├── 0ce29781-AA900789820001_robot_019.txt
+│   │           │   ├── 0da0af37-AA900789820001_robot_012.txt
+│   │           │   ├── 12178a24-AA900789820001_robot_014.txt
+│   │           │   ├── 30d5002b-AA900789820001_robot_002.txt
+│   │           │   ├── 3570ad5c-AA900789820001_robot_020.txt
+│   │           │   ├── 3795d914-AA900789820001_robot_018.txt
+│   │           │   ├── 5fa6b880-AA900789820001_robot_003.txt
+│   │           │   ├── 6819c9ca-AA900789820001_robot_007.txt
+│   │           │   ├── 90cfcae8-AA900789820001_robot_013.txt
+│   │           │   ├── a534b402-AA900789820001_robot_021.txt
+│   │           │   ├── a8049d3d-AA900789820001_robot_016.txt
+│   │           │   ├── a84ffb4d-AA900789820001_robot_001.txt
+│   │           │   ├── aafc846a-AA900789820001_robot_009.txt
+│   │           │   ├── b1e14f08-AA900789820001_robot_005.txt
+│   │           │   ├── c046aed4-AA900789820001_robot_015.txt
+│   │           │   ├── d1b7a59e-AA900789820001_robot_008.txt
+│   │           │   ├── de022f2d-AA900789820001_robot_010.txt
+│   │           │   └── ed3b5865-AA900789820001_robot_004.txt
+│   │           ├── train.cache
+│   │           └── val
+│   ├── import_labelstudio.json
+│   ├── import_ls
+│   │   ├── images
+│   │   └── labels
+│   ├── start_labelstudio.sh
+│   ├── train_yolo.py
+│   ├── weights
+│   │   └── yolo26n.pt
+│   ├── wheels
+│   │   ├── certifi-2026.10.23-py3-none-any.whl
+│   │   ├── charset_normalizer-3.5.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+│   │   ├── contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+│   │   ├── cycler-0.12.1-py3-none-any.whl
+│   │   ├── filelock-4.1.0-py3-none-any.whl
+│   │   ├── fonttools-4.65.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+│   │   ├── fsspec-2026.9.0-py3-none-any.whl
+│   │   ├── idna-3.20-py3-none-any.whl
+│   │   ├── jinja2-3.1.6-py3-none-any.whl
+│   │   ├── kiwisolver-1.5.1-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+│   │   ├── markupsafe-3.0.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+│   │   ├── matplotlib-3.10.9-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+│   │   ├── ml_dtypes-0.5.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+│   │   ├── mpmath-1.3.0-py3-none-any.whl
+│   │   ├── networkx-3.4.2-py3-none-any.whl
+│   │   ├── numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+│   │   ├── nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_ml_py-13.615.71-py3-none-any.whl
+│   │   ├── nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl
+│   │   ├── nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl
+│   │   ├── onnx-1.19.1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+│   │   ├── opencv_python-5.0.0.93-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+│   │   ├── packaging-26.3-py3-none-any.whl
+│   │   ├── pillow-12.2.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
+│   │   ├── polars-2.0.0-py3-none-any.whl
+│   │   ├── polars_runtime_32-2.0.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+│   │   ├── protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl
+│   │   ├── psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl
+│   │   ├── pyparsing-3.3.3-py3-none-any.whl
+│   │   ├── python_dateutil-3.0.0-py2.py3-none-any.whl
+│   │   ├── pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+│   │   ├── requests-2.34.2-py3-none-any.whl
+│   │   ├── six-1.17.0-py2.py3-none-any.whl
+│   │   ├── sympy-1.13.1-py3-none-any.whl
+│   │   ├── torch-2.6.0-cp310-cp310-manylinux1_x86_64.whl
+│   │   ├── torchaudio-2.6.0-cp310-cp310-manylinux1_x86_64.whl
+│   │   ├── torchvision-0.21.0-cp310-cp310-manylinux1_x86_64.whl
+│   │   ├── triton-3.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+│   │   ├── typing_extensions-4.16.0-py3-none-any.whl
+│   │   ├── tzdata-2026.5-py2.py3-none-any.whl
+│   │   ├── ultralytics-8.4.184-py3-none-any.whl
+│   │   ├── ultralytics_thop-2.2.3-py3-none-any.whl
+│   │   └── urllib3-2.8.0-py3-none-any.whl
+│   └── yolov8n.pt
+└── workstation_last_run.log
+
+35 directories, 103 files

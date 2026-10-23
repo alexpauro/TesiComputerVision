@@ -5,6 +5,8 @@ data/outputs/*.jpg
 
 # Cartella di build
 build/
+training_workspace/wheels
+runs/
 
 # Blocca tutti i formati immagine
 *.jpg
