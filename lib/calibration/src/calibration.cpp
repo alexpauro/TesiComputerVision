@@ -55,10 +55,10 @@ void calibrateCameraSet(const std::string& folderPath, const std::string& extens
     std::cout << "Target RMS impostato a: " << targetRms << "\n";
     std::cout << "======================================================\n";
 
-    cv::Ptr<cv::aruco::DetectorParameters> params = cv::aruco::DetectorParameters::create();
-    cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
-    cv::Ptr<cv::aruco::CharucoBoard> board = cv::aruco::CharucoBoard::create(squaresX, squaresY, squareLength, markerLength, dictionary);
-
+    cv::Ptr<cv::aruco::DetectorParameters> params = cv::makePtr<cv::aruco::DetectorParameters>();
+    cv::Ptr<cv::aruco::Dictionary> dictionary = cv::makePtr<cv::aruco::Dictionary>(cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250));
+    cv::Ptr<cv::aruco::CharucoBoard> board = cv::makePtr<cv::aruco::CharucoBoard>(cv::Size(squaresX, squaresY), squareLength, markerLength, *dictionary);
+    
     bool calibrationSuccess = false;
     int attempt = 1;
     int minRequiredImages = 15; // Soglia minima per una matrice affidabile
@@ -145,7 +145,7 @@ void calibrateCameraSet(const std::string& folderPath, const std::string& extens
             
             for (size_t j = 0; j < allCharucoIds[i].size(); j++) {
                 int id = allCharucoIds[i][j];
-                objPoints.push_back(board->chessboardCorners[id]);
+                objPoints.push_back(board->getChessboardCorners()[id]);
             }
             
             cv::projectPoints(objPoints, rvecs[i], tvecs[i], cameraMatrix, distCoeffs, projectedPoints);
@@ -203,7 +203,7 @@ void calibrateCameraSet(const std::string& folderPath, const std::string& extens
                 
                 for (size_t j = 0; j < allCharucoIds[i].size(); j++) {
                     int id = allCharucoIds[i][j];
-                    objPoints.push_back(board->chessboardCorners[id]);
+                    objPoints.push_back(board->getChessboardCorners()[id]);
                 }
                 
                 cv::projectPoints(objPoints, rvecs[i], tvecs[i], cameraMatrix, distCoeffs, projectedPoints);

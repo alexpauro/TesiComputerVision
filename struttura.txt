@@ -1,15 +1,156 @@
 .
-├── CMakeLists.txt
+├── .gitignore
+├── .vscode
+│   └── settings.json
 ├── app
-│   ├── CMakeLists.txt
 │   └── src
 │       └── main.cpp
+├── build
+│   ├── CMakeFiles
+│   │   ├── 3.22.1
+│   │   │   ├── CMakeCCompiler.cmake
+│   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │   ├── CMakeSystem.cmake
+│   │   │   ├── CompilerIdC
+│   │   │   │   ├── CMakeCCompilerId.c
+│   │   │   │   ├── a.out
+│   │   │   │   └── tmp
+│   │   │   └── CompilerIdCXX
+│   │   │       ├── CMakeCXXCompilerId.cpp
+│   │   │       ├── a.out
+│   │   │       └── tmp
+│   │   ├── CMakeDirectoryInformation.cmake
+│   │   ├── CMakeOutput.log
+│   │   ├── CMakeTmp
+│   │   ├── Makefile.cmake
+│   │   ├── Makefile2
+│   │   ├── cmake.check_cache
+│   │   └── progress.marks
+│   ├── Makefile
+│   ├── app
+│   │   ├── CMakeFiles
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   ├── CameraCalibration.dir
+│   │   │   │   ├── DependInfo.cmake
+│   │   │   │   ├── build.make
+│   │   │   │   ├── cmake_clean.cmake
+│   │   │   │   ├── compiler_depend.internal
+│   │   │   │   ├── compiler_depend.make
+│   │   │   │   ├── compiler_depend.ts
+│   │   │   │   ├── depend.make
+│   │   │   │   ├── flags.make
+│   │   │   │   ├── progress.make
+│   │   │   │   └── src
+│   │   │   │       ├── main.cpp.o
+│   │   │   │       └── main.cpp.o.d
+│   │   │   └── progress.marks
+│   │   ├── CameraCalibration
+│   │   ├── Makefile
+│   │   └── cmake_install.cmake
+│   ├── cmake_install.cmake
+│   └── lib
+│       ├── alignment
+│       │   ├── CMakeFiles
+│       │   │   ├── CMakeDirectoryInformation.cmake
+│       │   │   ├── alignment.dir
+│       │   │   │   ├── DependInfo.cmake
+│       │   │   │   ├── build.make
+│       │   │   │   ├── cmake_clean.cmake
+│       │   │   │   ├── cmake_clean_target.cmake
+│       │   │   │   ├── compiler_depend.internal
+│       │   │   │   ├── compiler_depend.make
+│       │   │   │   ├── compiler_depend.ts
+│       │   │   │   ├── depend.make
+│       │   │   │   ├── flags.make
+│       │   │   │   ├── progress.make
+│       │   │   │   └── src
+│       │   │   │       ├── alignment.cpp.o
+│       │   │   │       └── alignment.cpp.o.d
+│       │   │   └── progress.marks
+│       │   ├── Makefile
+│       │   ├── cmake_install.cmake
+│       │   └── libalignment.a
+│       └── calibration
+│           ├── CMakeFiles
+│           │   ├── CMakeDirectoryInformation.cmake
+│           │   ├── calibration.dir
+│           │   │   ├── DependInfo.cmake
+│           │   │   ├── build.make
+│           │   │   ├── cmake_clean.cmake
+│           │   │   ├── cmake_clean_target.cmake
+│           │   │   ├── compiler_depend.internal
+│           │   │   ├── compiler_depend.make
+│           │   │   ├── compiler_depend.ts
+│           │   │   ├── depend.make
+│           │   │   ├── flags.make
+│           │   │   ├── progress.make
+│           │   │   └── src
+│           │   │       ├── calibration.cpp.o
+│           │   │       ├── calibration.cpp.o.d
+│           │   │       ├── undistort.cpp.o
+│           │   │       └── undistort.cpp.o.d
+│           │   └── progress.marks
+│           ├── Makefile
+│           ├── cmake_install.cmake
+│           └── libcalibration.a
 ├── convert_raw.sh
 ├── data
 │   ├── best.onnx
 │   ├── calib_images_robot
 │   ├── calib_images_s24fe
 │   ├── nuove_foto
+│   │   ├── AA900789820001_robot_001.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_002.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_003.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_004.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_005.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_006.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_007.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_008.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_009.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_010.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_011.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_012.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_013.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_014.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_015.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_016.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_017.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_018.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_019.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_020.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_021.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_022.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_023.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_024.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_025.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_026.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_027.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_028.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_029.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_030.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_031.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_032.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_033.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_034.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_035.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_036.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_037.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_038.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_039.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_040.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_041.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_042.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_043.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_044.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_045.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_046.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_047.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_048.bmp:Zone.Identifier
+│   │   ├── AA900789820001_robot_049.bmp:Zone.Identifier
+│   │   └── AA900789820001_robot_050.bmp:Zone.Identifier
 │   ├── outputs
 │   │   ├── AA900789820001
 │   │   │   ├── undistorted_robot
@@ -22,13 +163,11 @@
 │           └── s24fe
 ├── lib
 │   ├── alignment
-│   │   ├── CMakeLists.txt
 │   │   ├── include
 │   │   │   └── alignment.hpp
 │   │   └── src
 │   │       └── alignment.cpp
 │   └── calibration
-│       ├── CMakeLists.txt
 │       ├── include
 │       │   ├── calibration.hpp
 │       │   └── undistort.hpp
@@ -36,7 +175,6 @@
 │           ├── calibration.cpp
 │           └── undistort.cpp
 ├── run.sh
-├── struttura.txt
 ├── training_workspace
 │   ├── 1_export_to_usb.sh
 │   ├── 2_import_from_usb.sh
@@ -50,37 +188,32 @@
 │   │       │   └── val
 │   │       └── labels
 │   │           ├── train
-│   │           │   ├── 013baccc-AA900789820001_robot_011.txt
-│   │           │   ├── 0290f892-AA900789820001_robot_017.txt
-│   │           │   ├── 06f1984c-AA900789820001_robot_006.txt
-│   │           │   ├── 0ce29781-AA900789820001_robot_019.txt
-│   │           │   ├── 0da0af37-AA900789820001_robot_012.txt
-│   │           │   ├── 12178a24-AA900789820001_robot_014.txt
-│   │           │   ├── 30d5002b-AA900789820001_robot_002.txt
-│   │           │   ├── 3570ad5c-AA900789820001_robot_020.txt
-│   │           │   ├── 3795d914-AA900789820001_robot_018.txt
-│   │           │   ├── 5fa6b880-AA900789820001_robot_003.txt
-│   │           │   ├── 6819c9ca-AA900789820001_robot_007.txt
-│   │           │   ├── 90cfcae8-AA900789820001_robot_013.txt
-│   │           │   ├── a534b402-AA900789820001_robot_021.txt
-│   │           │   ├── a8049d3d-AA900789820001_robot_016.txt
-│   │           │   ├── a84ffb4d-AA900789820001_robot_001.txt
-│   │           │   ├── aafc846a-AA900789820001_robot_009.txt
-│   │           │   ├── b1e14f08-AA900789820001_robot_005.txt
-│   │           │   ├── c046aed4-AA900789820001_robot_015.txt
-│   │           │   ├── d1b7a59e-AA900789820001_robot_008.txt
-│   │           │   ├── de022f2d-AA900789820001_robot_010.txt
-│   │           │   └── ed3b5865-AA900789820001_robot_004.txt
 │   │           ├── train.cache
 │   │           └── val
 │   ├── import_labelstudio.json
 │   ├── import_ls
 │   │   ├── images
 │   │   └── labels
+│   ├── runs
+│   │   └── detect
+│   │       ├── autolabel
+│   │       │   └── labels
+│   │       ├── fiducial_model
+│   │       │   ├── args.yaml
+│   │       │   ├── results.csv
+│   │       │   └── weights
+│   │       │       ├── best.onnx
+│   │       │       ├── best.pt
+│   │       │       └── last.pt
+│   │       ├── fiducial_model-2  [error opening dir]
+│   │       └── fiducial_model-3  [error opening dir]
 │   ├── start_labelstudio.sh
 │   ├── train_yolo.py
 │   ├── weights
-│   │   └── yolo26n.pt
+│   │   ├── yolo26n.pt
+│   │   ├── yolo26s-obb.pt
+│   │   ├── yolov8n.pt
+│   │   └── yolov8s.pt
 │   ├── wheels
 │   │   ├── certifi-2026.10.23-py3-none-any.whl
 │   │   ├── charset_normalizer-3.5.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
@@ -135,7 +268,7 @@
 │   │   ├── ultralytics-8.4.184-py3-none-any.whl
 │   │   ├── ultralytics_thop-2.2.3-py3-none-any.whl
 │   │   └── urllib3-2.8.0-py3-none-any.whl
-│   └── yolov8n.pt
+│   └── workstation_last_run.log
 └── workstation_last_run.log
 
-35 directories, 103 files
+65 directories, 206 files

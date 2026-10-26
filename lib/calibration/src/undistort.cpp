@@ -6,6 +6,24 @@
 #include <iomanip>
 #include <sstream>
 
+// Funzione per applicare il filtro CLAHE per far risaltare i fiducial
+cv::Mat applyCLAHE(const cv::Mat& img) {
+    cv::Mat lab, merged, enhanced;
+    cv::cvtColor(img, lab, cv::COLOR_BGR2Lab);
+    
+    std::vector<cv::Mat> channels;
+    cv::split(lab, channels);
+    
+    // Applica CLAHE sul canale L (Luminosità)
+    cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(2.0, cv::Size(8, 8));
+    clahe->apply(channels[0], channels[0]);
+    
+    cv::merge(channels, merged);
+    cv::cvtColor(merged, enhanced, cv::COLOR_Lab2BGR);
+    
+    return enhanced;
+}
+
 void undistortImages(const std::string& inputFolder, const std::string& extension, 
                      const std::string& paramsFile, const std::string& outputFolder,
                      const std::string& boardName, const std::string& cameraName) {
@@ -19,7 +37,7 @@ void undistortImages(const std::string& inputFolder, const std::string& extensio
     }
 
     std::cout << "\n======================================================\n";
-    std::cout << "INIZIO RADDRIZZAMENTO (UNDISTORT): " << inputFolder << "\n";
+    std::cout << "INIZIO RADDRIZZAMENTO E FILTRAGGIO CLAHE: " << inputFolder << "\n";
     std::cout << "======================================================\n";
 
     cv::FileStorage fs(paramsFile, cv::FileStorage::READ);
@@ -40,13 +58,16 @@ void undistortImages(const std::string& inputFolder, const std::string& extensio
         cv::Mat undistorted;
         cv::undistort(img, undistorted, cameraMatrix, distCoeffs);
 
+        // Applica il filtro CLAHE all'immagine appena dedistorta
+        cv::Mat filtered = applyCLAHE(undistorted);
+
         // Formatta il nome file come: scheda_01_robot_001.bmp
         std::stringstream ss;
         ss << outputFolder << "/" << boardName << "_" << cameraName << "_" 
            << std::setfill('0') << std::setw(3) << (i + 1) << extension;
         std::string outPath = ss.str();
 
-        cv::imwrite(outPath, undistorted);
-        std::cout << "Raddrizzata e salvata: " << outPath << std::endl;
+        cv::imwrite(outPath, filtered);
+        std::cout << "Raddrizzata, filtrata e salvata: " << outPath << std::endl;
     }
 }

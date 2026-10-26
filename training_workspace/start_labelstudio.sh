@@ -17,41 +17,19 @@ echo "--- PULIZIA VECCHIE PREDIZIONI ---"
 rm -rf "$WORKSPACE_DIR/runs/detect/autolabel"
 
 echo "--- AVVIO INFERENZA AUTOLABEL (YOLO) ---"
-python3 -c "
-import os
-from ultralytics import YOLO
-
-workspace = '${WORKSPACE_DIR}'
-model_path = os.path.join(workspace, 'runs/detect/fiducial_model/weights/best.pt')
-
-if not os.path.exists(model_path):
-    model_path = os.path.join(workspace, 'weights/best.pt')
-
-if os.path.exists(model_path):
-    print(f'Utilizzo dei pesi da: {model_path}')
-    model = YOLO(model_path)
-    model.predict(
-        source='../data/nuove_foto',
-        save_txt=True,
-        conf=0.10,
-        # Forza il percorso assoluto corretto
-        project=os.path.join(workspace, 'runs/detect'),
-        name='autolabel',
-        exist_ok=True
-    )
-else:
-    print(f'Attenzione: Nessun file di pesi .pt trovato in {model_path}. Verranno saltate le predizioni automatiche.')
-"
+python3 autolabel.py
 
 echo "--- PREPARAZIONE E CONTROLLO DATI PER LABEL STUDIO ---"
 mkdir -p import_ls/images import_ls/labels
 rm -rf import_ls/images/* import_ls/labels/* 2>/dev/null
 
-# Copia delle immagini
+# Copia delle immagini (inclusi BMP e TIFF)
 cp ../data/nuove_foto/*.[jJ][pP][gG] import_ls/images/ 2>/dev/null
 cp ../data/nuove_foto/*.[jJ][pP][eE][gG] import_ls/images/ 2>/dev/null
 cp ../data/nuove_foto/*.[pP][nN][gG] import_ls/images/ 2>/dev/null
 cp ../data/nuove_foto/*.[bB][mM][pP] import_ls/images/ 2>/dev/null
+cp ../data/nuove_foto/*.[tT][iI][fF] import_ls/images/ 2>/dev/null
+cp ../data/nuove_foto/*.[tT][iI][fF][fF] import_ls/images/ 2>/dev/null
 
 # Copia delle label generate sfruttando il percorso assoluto
 if [ -d "$WORKSPACE_DIR/runs/detect/autolabel/labels" ]; then
@@ -99,7 +77,7 @@ tasks = []
 
 if os.path.exists(images_dir):
     for img_name in sorted(os.listdir(images_dir)):
-        if img_name.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp')):
+        if img_name.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff')):
             img_url = f'http://localhost:8081/images/{img_name}'
             img_path = os.path.join(images_dir, img_name)
             

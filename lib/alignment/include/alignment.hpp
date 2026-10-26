@@ -5,16 +5,25 @@
 #include <string>
 #include <vector>
 
-// Cerca i fiducial in pixel tramite Template Matching
-std::vector<cv::Point2f> findFiducials(const cv::Mat& img, const cv::Mat& templ, double threshold = 0.7);
+// Legge le bounding box YOLO generate in formato .txt
+std::vector<cv::Rect> loadYoloBoundingBoxes(const std::string& txtPath, int imgWidth, int imgHeight);
 
-// Legge il file TXT con le coordinate CAD (formato: X Y per riga)
-std::vector<cv::Point2f> loadCadCoordinates(const std::string& txtFile);
+// Ricerca un cerchio all'interno della singola ROI ritagliata da YOLO
+bool findCircleInROI(const cv::Mat& roi, cv::Point2f& center);
 
-// Ordina 4 punti (Alto-SX, Alto-DX, Basso-SX, Basso-DX) per associarli correttamente
-void sortFiducials(std::vector<cv::Point2f>& pts);
+// Calcola il centro esatto dei cerchi partendo dalle ROI testuali fornite da YOLO
+std::vector<cv::Point2f> centerFiducialsFromLabels(const cv::Mat& fullImage, const std::vector<cv::Rect>& yoloBoxes);
 
-// Calcola l'allineamento tra i pixel e il CAD
-cv::Mat computeHomographyMatrix(std::vector<cv::Point2f> imagePts, std::vector<cv::Point2f> cadPts);
+// Estrae matematicamente i 4 fiducial agli angoli estremi della scheda (ignora i falsi positivi interni)
+std::vector<cv::Point2f> extractFourCorners(const std::vector<cv::Point2f>& points);
+
+// Legge il file TXT estraendo solo i fiducial del lato specificato (TOP o BOTTOM)
+std::vector<cv::Point2f> loadCadCoordinates(const std::string& cadFilePath, const std::string& boardSide);
+
+// Ordina 4 punti (Alto-SX, Alto-DX, Basso-SX, Basso-DX) per associarli correttamente al CAD
+void sortFiducials(std::vector<cv::Point2f>& fiducialPoints);
+
+// Calcola la matrice di Omografia per allineare i pixel rilevati al disegno CAD
+cv::Mat computeHomographyMatrix(std::vector<cv::Point2f> imagePoints, std::vector<cv::Point2f> cadPoints);
 
 #endif // ALIGNMENT_HPP
