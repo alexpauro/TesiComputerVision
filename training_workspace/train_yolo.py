@@ -14,7 +14,8 @@ def main():
         device=0,          # GPU NVIDIA
         workers=8,         # Ottimizzato per velocizzare il caricamento dati
         cache=True,        # Se hai RAM a sufficienza, velocizza le epoche tenendo le immagini in memoria
-        name='fiducial_model_obb'
+        project='runs/detect',
+        name='fiducial_model'
     )
 
     print("Esportazione in ONNX...")

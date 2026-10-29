@@ -34,8 +34,10 @@ echo "Copia del progetto in $DEST in corso..."
 
 # Copia solo la cartella di training, forzando l'aggiornamento
 rsync -ah --info=progress2 --ignore-existing \
-    --exclude="yolo_env" \
-    --exclude="data/nuove_foto" \
+    --exclude="import_ls_from_autolabel" \
+    --exclude="runs" \
+    --exclude="wheels" \
+    --exclude="workstation_last_run.txt" \
     "$WORKSPACE/" "$DEST/project/"
 
 echo -e "\n=== FASE 3: GENERAZIONE SCRIPT WORKSTATION (LINUX) ==="

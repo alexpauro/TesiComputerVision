@@ -1,6 +1,6 @@
 path: ./data/fiducial_dataset
 train: images/train
-val: images/train  # Per il primo bootstrap usiamo la stessa cartella
+val: images/train  # Validazione temporaneamente sulle immagini di training
 
 names:
   0: fiducial

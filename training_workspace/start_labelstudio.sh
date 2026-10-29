@@ -1,17 +1,21 @@
 #!/bin/bash
 
-# Ottieni il percorso assoluto della cartella corrente (training_workspace)
-WORKSPACE_DIR="$(pwd)"
+# Ottieni il percorso assoluto della cartella dello script.
+WORKSPACE_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+INPUT_DIR="$WORKSPACE_DIR/../data/inputs/nuove_foto_autolabel_fiducial_training"
+IMPORT_DIR="$WORKSPACE_DIR/import_ls_from_autolabel"
 
 # Attiva l'ambiente virtuale posizionato nella cartella principale del progetto
-if [ -d "../yolo_env" ]; then
-    source ../yolo_env/bin/activate
-elif [ -d "yolo_env" ]; then
-    source yolo_env/bin/activate
+if [ -d "$WORKSPACE_DIR/../yolo_env" ]; then
+    source "$WORKSPACE_DIR/../yolo_env/bin/activate"
+elif [ -d "$WORKSPACE_DIR/yolo_env" ]; then
+    source "$WORKSPACE_DIR/yolo_env/bin/activate"
 else
     echo "ERRORE: Ambiente virtuale yolo_env non trovato!"
     exit 1
 fi
+
+cd "$WORKSPACE_DIR"
 
 echo "--- PULIZIA VECCHIE PREDIZIONI ---"
 rm -rf "$WORKSPACE_DIR/runs/detect/autolabel"
@@ -20,33 +24,86 @@ echo "--- AVVIO INFERENZA AUTOLABEL (YOLO) ---"
 python3 autolabel.py
 
 echo "--- PREPARAZIONE E CONTROLLO DATI PER LABEL STUDIO ---"
-mkdir -p import_ls/images import_ls/labels
-rm -rf import_ls/images/* import_ls/labels/* 2>/dev/null
+rm -rf "$WORKSPACE_DIR/import_ls" "$IMPORT_DIR"
+mkdir -p "$IMPORT_DIR/images" "$IMPORT_DIR/labels"
+rm -rf "$IMPORT_DIR/images/"* "$IMPORT_DIR/labels/"* 2>/dev/null
 
-# Copia delle immagini (inclusi BMP e TIFF)
-cp ../data/nuove_foto/*.[jJ][pP][gG] import_ls/images/ 2>/dev/null
-cp ../data/nuove_foto/*.[jJ][pP][eE][gG] import_ls/images/ 2>/dev/null
-cp ../data/nuove_foto/*.[pP][nN][gG] import_ls/images/ 2>/dev/null
-cp ../data/nuove_foto/*.[bB][mM][pP] import_ls/images/ 2>/dev/null
-cp ../data/nuove_foto/*.[tT][iI][fF] import_ls/images/ 2>/dev/null
-cp ../data/nuove_foto/*.[tT][iI][fF][fF] import_ls/images/ 2>/dev/null
+# Copia delle immagini già compatibili con Label Studio.
+cp "$INPUT_DIR"/*.[jJ][pP][gG] "$IMPORT_DIR/images/" 2>/dev/null
+cp "$INPUT_DIR"/*.[jJ][pP][eE][gG] "$IMPORT_DIR/images/" 2>/dev/null
+cp "$INPUT_DIR"/*.[pP][nN][gG] "$IMPORT_DIR/images/" 2>/dev/null
+cp "$INPUT_DIR"/*.[bB][mM][pP] "$IMPORT_DIR/images/" 2>/dev/null
+
+echo "--- CONVERSIONE TIFF IN BMP MULTICORE PER LABEL STUDIO ---"
+INPUT_DIR="$INPUT_DIR" OUTPUT_DIR="$IMPORT_DIR/images" python3 - <<'PY'
+import multiprocessing
+import os
+from pathlib import Path
+
+from PIL import Image
+
+input_dir = Path(os.environ["INPUT_DIR"])
+output_dir = Path(os.environ["OUTPUT_DIR"])
+tiff_files = sorted(
+    path for path in input_dir.iterdir()
+    if path.is_file() and path.suffix.lower() in {".tif", ".tiff"}
+)
+
+if not tiff_files:
+    print("Nessun file TIFF da convertire.")
+    raise SystemExit(0)
+
+def convert_tiff(path):
+    output_path = output_dir / f"{path.stem}.bmp"
+    try:
+        with Image.open(path) as image:
+            if image.mode in ("RGBA", "LA"):
+                background = Image.new("RGB", image.size, "white")
+                alpha = image.getchannel("A")
+                background.paste(image.convert("RGB"), mask=alpha)
+                image = background
+            else:
+                image = image.convert("RGB")
+            image.save(output_path, "BMP")
+        return path, output_path, None
+    except Exception as error:
+        return path, output_path, error
+
+worker_count = max(1, (os.cpu_count() or 2) - 1)
+with multiprocessing.Pool(processes=min(worker_count, len(tiff_files))) as pool:
+    results = pool.map(convert_tiff, tiff_files)
+
+failed = []
+for source_path, output_path, error in results:
+    if error is None:
+        print(f"Convertito: {source_path.name} -> {output_path.name}")
+    else:
+        failed.append((source_path, error))
+        print(f"ERRORE: impossibile convertire {source_path}: {error}", flush=True)
+
+print(f"Conversione completata usando {min(worker_count, len(tiff_files))} worker.")
+if failed:
+    raise SystemExit(1)
+PY
 
 # Copia delle label generate sfruttando il percorso assoluto
 if [ -d "$WORKSPACE_DIR/runs/detect/autolabel/labels" ]; then
-    cp "$WORKSPACE_DIR/runs/detect/autolabel/labels/"*.txt import_ls/labels/ 2>/dev/null
+    cp "$WORKSPACE_DIR/runs/detect/autolabel/labels/"*.txt "$IMPORT_DIR/labels/" 2>/dev/null
     echo "OK: Label YOLO copiate con successo per Label Studio."
 else
     echo "ATTENZIONE: La cartella delle label di YOLO non esiste ($WORKSPACE_DIR/runs/detect/autolabel/labels)!"
 fi
+rm -rf "$WORKSPACE_DIR/runs/detect/autolabel"
 
 echo "--- PULIZIA PORTE E AVVIO MICRO-SERVER ---"
 fuser -k 8081/tcp 2>/dev/null
 pkill -f "cors_server.py" 2>/dev/null
 sleep 1
 
+export IMPORT_DIR
 cat << 'SRV' > cors_server.py
 import http.server, socketserver, os, functools
-DIR = os.path.abspath("import_ls")
+DIR = os.path.abspath(os.environ["IMPORT_DIR"])
 class CORSRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
@@ -71,8 +128,8 @@ from PIL import Image
 def generate_id(size=10):
     return ''.join(random.choices(string.ascii_letters + string.digits, k=size))
 
-images_dir = 'import_ls/images'
-labels_dir = 'import_ls/labels'
+images_dir = os.path.abspath('$IMPORT_DIR/images')
+labels_dir = os.path.abspath('$IMPORT_DIR/labels')
 tasks = []
 
 if os.path.exists(images_dir):
@@ -96,9 +153,41 @@ if os.path.exists(images_dir):
                 with open(label_path, 'r') as f:
                     for line in f.readlines():
                         parts = line.strip().split()
-                        if len(parts) >= 5:
-                            cls, x, y, w, h = int(parts[0]), float(parts[1]), float(parts[2]), float(parts[3]), float(parts[4])
+                        if len(parts) == 9:
+                            # Formato OBB: classe + 8 coordinate (x1 y1 x2 y2 x3 y3 x4 y4)
+                            cls = int(parts[0])
+                            x_coords = [float(parts[1]), float(parts[3]), float(parts[5]), float(parts[7])]
+                            y_coords = [float(parts[2]), float(parts[4]), float(parts[6]), float(parts[8])]
                             
+                            # Calcola il bounding box dritto (HBB) che racchiude il box ruotato
+                            min_x, max_x = min(x_coords), max(x_coords)
+                            min_y, max_y = min(y_coords), max(y_coords)
+                            
+                            x_top_left = min_x * 100
+                            y_top_left = min_y * 100
+                            w_pct = (max_x - min_x) * 100
+                            h_pct = (max_y - min_y) * 100
+                            
+                            box_list.append({
+                                'id': generate_id(),
+                                'original_width': orig_w,
+                                'original_height': orig_h,
+                                'image_rotation': 0,
+                                'value': {
+                                    'x': x_top_left,
+                                    'y': y_top_left,
+                                    'width': w_pct,
+                                    'height': h_pct,
+                                    'rotation': 0,
+                                    'rectanglelabels': ['fiducial']
+                                },
+                                'from_name': 'label',
+                                'to_name': 'image',
+                                'type': 'rectanglelabels'
+                            })
+                        elif len(parts) == 5:
+                            # Formato Standard: classe + x y w h
+                            cls, x, y, w, h = int(parts[0]), float(parts[1]), float(parts[2]), float(parts[3]), float(parts[4])
                             box_list.append({
                                 'id': generate_id(),
                                 'original_width': orig_w,

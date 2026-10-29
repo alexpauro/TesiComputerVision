@@ -7,7 +7,8 @@ data/outputs/*.jpg
 build/
 training_workspace/wheels
 training_workspace/runs
-training_workspace/import_ls
+training_workspace/data
+training_workspace/import_ls_from_autolabel
 yolo_env/
 
 # Blocca tutti i formati immagine
@@ -18,5 +19,10 @@ yolo_env/
 *.dng
 *.tiff
 *.raw
-
+*:Zone.Identifier
+Thumbs.db
+Desktop.ini
+*.tmp
+*.temp
+~$*
 yolo_env/
