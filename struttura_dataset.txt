@@ -1,0 +1,72 @@
+/mnt/d/train_pcb_detection/archive (1).zip
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/.gitignore
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/LICENSE
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/README.md
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/checkpoints/.gitkeep
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/checkpoints/super_resolution.h5
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/data/.gitkeep
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/logs/.gitkeep
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/reports/.gitkeep
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/requirements.txt
+/mnt/d/train_pcb_detection/archive (1)/PCBSegClassNet/src/train_classification.py
+/mnt/d/train_pcb_detection/archive/components_data_uncropped/data.yaml
+/mnt/d/train_pcb_detection/archive/components_data_uncropped/train/labels.cache
+/mnt/d/train_pcb_detection/archive/components_data_uncropped/valid/labels.cache
+/mnt/d/train_pcb_detection/fpic-component-DatasetNinja.tar
+/mnt/d/train_pcb_detection/fpic-component-DatasetNinja/LICENSE.md
+/mnt/d/train_pcb_detection/fpic-component-DatasetNinja/meta.json
+/mnt/d/train_pcb_detection/fpic-component-DatasetNinja/train/ann/image_0.png.json
+/mnt/d/train_pcb_detection/images_and_labels/fine/data.yaml
+/mnt/d/train_pcb_detection/pcb-component-detection-DatasetNinja/LICENSE.md
+/mnt/d/train_pcb_detection/pcb-component-detection-DatasetNinja/meta.json
+/mnt/d/train_pcb_detection/pcb-component-detection-DatasetNinja/test/ann/VID20210601143927-96_jpg.rf.51037a593015ac38c8ac31613da3c066.jpg.json
+/mnt/d/train_pcb_detection/pcb-component-detection-DatasetNinja/train/ann/VID20210601143927-96_jpg.rf.36de73b8200ee94d0bd4679407c9cd40.jpg.json
+/mnt/d/train_pcb_detection/pcb-component-detection-DatasetNinja/validation/ann/VID202106071443181-102_jpg.rf.1e3457a8b7e4c1f9962bcf2dfceb4334.jpg.json
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ACM-109_Bottom/ACM-109_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ACM-109_Top/ACM-109_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ATTIOT_Bottom/ATTIOT_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ATTIOT_Top/ATTIOT_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ArduinoMega_Bottom/ArduinoMega_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ArduinoMega_Top/ArduinoMega_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Arty_Bottom/Arty_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Arty_Top/Arty_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/DigitalDiscovery/DigitalDiscovery.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/DuetWIFI_Bottom/DuetWIFI_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/DuetWIFI_Top/DuetWIFI_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/EDA-008_Bottom/EDA-008_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/EDA-008_Top/EDA-008_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/HackRF/HackRF.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ML365_Bottom/ML365_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ML365_Top/ML365_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ML450_Bottom1/ML450_Bottom1.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ML450_Bottom2/ML450_Bottom2.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ML450_Top1/ML450_Top1.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ML450_Top2/ML450_Top2.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/MicroZed_Bottom/MicroZed_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/MicroZed_Top/MicroZed_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/OlimexRed/OlimexRed.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/README.txt
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/RPI3B_Bottom/RPI3B_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/RPI3B_Top/RPI3B_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/STK644/STK644.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Spartan3/Spartan3.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Spartan6Redux_Bottom/Spartan6Redux_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Spartan6Redux_Top/Spartan6Redux_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Spartan6_Bottom/Spartan6_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Spartan6_Top/Spartan6_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/SystemAce_Bottom/SystemAce_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/SystemAce_Top/SystemAce_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ThingMagicM6e/ThingMagicM6e.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/UTL-016/UTL-016.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/UTL-103/UTL-103.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Virtex5/Virtex5.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Virtex6/Virtex6.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/XCM-307A_Bottom/XCM-307A_Bottom.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/XCM-307A_Top/XCM-307A_Top.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/XLVDSproSupply_Bottom1/XLVDSproSupply_Bottom1.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/XLVDSproSupply_Bottom2/XLVDSproSupply_Bottom2.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/XLVDSproSupply_Top1/XLVDSproSupply_Top1.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/ZTurn/ZTurn.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Zedboard/Zedboard.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Ztex/Ztex.xml
+/mnt/d/train_pcb_detection/pcb_wacv_2019/pcb_wacv_2019/Zybo/Zybo.xml

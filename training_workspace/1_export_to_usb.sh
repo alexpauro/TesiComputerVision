@@ -8,6 +8,7 @@ WORKSPACE="$HOME/Tesi/Computer Vision/training_workspace"
 
 echo "=== FASE 0: MONTAGGIO FORZATO CHIAVETTA ($drv_upper:) ==="
 sudo umount -l /mnt/$drv 2>/dev/null
+sudo umount -l /mnt/$drv /dev/null
 sudo mkdir -p /mnt/$drv
 sudo mount -t drvfs $drv_upper: /mnt/$drv -o metadata,uid=$(id -u),gid=$(id -g),umask=022
 
